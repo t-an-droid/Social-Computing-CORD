@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Herding Game - Laptop Optimized</title>
+    <title>The Herding Game</title>
     <style>
         :root {
             --pastel-blue: #a8d0e6;
@@ -28,20 +28,16 @@
             color: var(--text-dark);
             line-height: 1.5;
             overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         
         .screen {
             display: none;
-            width: 100%;
-            padding: 40px 20px;
+            min-height: 100vh;
+            padding: 20px;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            min-height: 100vh;
         }
         
         .active {
@@ -49,98 +45,83 @@
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 700px;
             width: 100%;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
         
         h1 {
-            font-size: 3rem;
-            margin-bottom: 25px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             color: var(--pastel-purple);
-            line-height: 1.2;
         }
         
         h2 {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             color: var(--pastel-purple);
-            line-height: 1.3;
         }
         
         p {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
             color: var(--text-light);
-            line-height: 1.6;
         }
         
         .btn {
-            padding: 16px 35px;
-            font-size: 1.3rem;
+            padding: 12px 25px;
+            font-size: 1.1rem;
             background-color: var(--pastel-blue);
             color: white;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            min-width: 180px;
+            margin: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
         }
         
         .btn:hover {
             background-color: var(--pastel-purple);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
         }
         
         .scenario {
             background-color: white;
-            border-radius: 20px;
-            padding: 35px;
-            margin: 25px 0;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 800px;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         
         .options {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-top: 30px;
-            width: 100%;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
         }
         
         .option-btn {
-            padding: 18px 35px;
+            padding: 10px 20px;
             background-color: var(--pastel-green);
             color: var(--text-dark);
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.2rem;
-            min-width: 200px;
-            flex: 1;
-            max-width: 280px;
+            font-size: 1rem;
         }
         
         .option-btn:hover {
             background-color: var(--pastel-yellow);
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transform: scale(1.03);
         }
         
         .option-btn.selected {
             background-color: var(--pastel-purple);
             color: white;
-            transform: scale(1.08);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         
         .option-btn:disabled {
@@ -148,43 +129,37 @@
             color: #999;
             cursor: not-allowed;
             transform: none;
-            box-shadow: none;
         }
         
         .result {
-            margin-top: 30px;
-            padding: 25px;
-            border-radius: 15px;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
             background-color: var(--pastel-pink);
             display: none;
-            width: 100%;
-            max-width: 800px;
         }
         
         .fact-box {
             background-color: var(--pastel-yellow);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 25px 0;
-            border-left: 6px solid var(--pastel-orange);
-            font-size: 1.2rem;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--pastel-orange);
+            font-size: 0.95rem;
             animation: fadeIn 1s ease-in;
-            width: 100%;
-            max-width: 800px;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         .progress-bar {
             width: 100%;
-            max-width: 800px;
-            height: 12px;
+            height: 8px;
             background-color: #e0e0e0;
-            border-radius: 6px;
-            margin: 25px 0;
+            border-radius: 4px;
+            margin: 15px 0;
             overflow: hidden;
         }
         
@@ -199,16 +174,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 250px;
-            margin: 35px 0;
+            height: 180px;
+            margin: 20px 0;
             position: relative;
-            width: 100%;
-            max-width: 800px;
         }
         
         .person {
-            width: 50px;
-            height: 50px;
+            width: 35px;
+            height: 35px;
             background-color: var(--pastel-blue);
             border-radius: 50%;
             position: absolute;
@@ -218,137 +191,105 @@
             align-items: center;
             font-weight: bold;
             color: white;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            font-size: 1.1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
         
         .person.you {
             background-color: var(--pastel-orange);
-            transform: scale(1.3);
+            transform: scale(1.15);
             z-index: 10;
         }
         
         .restaurant-visual {
             display: flex;
             justify-content: space-around;
-            margin: 35px 0;
-            width: 100%;
-            max-width: 800px;
-            gap: 40px;
+            margin: 20px 0;
         }
         
         .restaurant {
-            flex: 1;
-            padding: 30px;
+            width: 130px;
+            padding: 15px;
             background-color: white;
-            border-radius: 18px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             text-align: center;
-            min-width: 220px;
-            max-width: 300px;
-            transition: transform 0.3s ease;
-        }
-        
-        .restaurant:hover {
-            transform: translateY(-5px);
         }
         
         .customers {
-            font-size: 2.2rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--pastel-purple);
+            margin: 8px 0;
+        }
+        
+        .highlight {
+            background-color: var(--pastel-yellow);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .conclusion {
+            font-size: 1.2rem;
             font-weight: bold;
             color: var(--pastel-purple);
             margin: 15px 0;
         }
         
-        .highlight {
-            background-color: var(--pastel-yellow);
-            padding: 4px 8px;
-            border-radius: 5px;
-            font-weight: 600;
-        }
-        
-        .conclusion {
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: var(--pastel-purple);
-            margin: 25px 0;
-        }
-        
         .game-stats {
             display: flex;
             justify-content: space-around;
-            margin: 25px 0;
-            font-size: 1.3rem;
-            width: 100%;
-            max-width: 800px;
-            gap: 25px;
+            margin: 15px 0;
+            font-size: 1rem;
         }
         
         .stat {
             background-color: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            flex: 1;
-            min-width: 180px;
-            transition: transform 0.3s ease;
-        }
-        
-        .stat:hover {
-            transform: translateY(-3px);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
         .emoji {
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
         
         .visual-explanation {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 30px 0;
-            width: 100%;
-            max-width: 800px;
-            gap: 30px;
+            margin: 15px 0;
         }
         
         .arrow {
-            font-size: 3rem;
+            font-size: 2rem;
+            margin: 0 15px;
             color: var(--pastel-purple);
         }
         
         .icon-box {
-            padding: 25px;
-            border-radius: 15px;
+            padding: 15px;
+            border-radius: 10px;
             background-color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            flex: 1;
-            min-width: 180px;
-            max-width: 250px;
-            transition: transform 0.3s ease;
-        }
-        
-        .icon-box:hover {
-            transform: translateY(-3px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            width: 120px;
         }
         
         .icon-box p {
-            font-size: 1.1rem;
-            margin: 10px 0 0 0;
+            font-size: 0.9rem;
+            margin: 5px 0 0 0;
         }
         
         .choice-response {
             background-color: var(--pastel-green);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 25px 0;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
             animation: slideIn 0.5s ease-out;
-            width: 100%;
         }
         
         @keyframes slideIn {
-            from { transform: translateX(-25px); opacity: 0; }
+            from { transform: translateX(-20px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
         
@@ -365,72 +306,21 @@
         .instruction {
             background-color: var(--pastel-blue);
             color: white;
-            padding: 18px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
             font-weight: bold;
             animation: bounce 2s infinite;
-            width: 100%;
-            max-width: 800px;
-            font-size: 1.2rem;
         }
         
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+            50% { transform: translateY(-5px); }
         }
         
         .continue-btn {
-            margin-top: 25px;
+            margin-top: 15px;
             display: none;
-        }
-        
-        /* Laptop-specific optimizations */
-        @media (min-width: 1024px) {
-            .container {
-                max-width: 1100px;
-            }
-            
-            .scenario, .result, .fact-box {
-                max-width: 900px;
-            }
-            
-            .restaurant-visual {
-                max-width: 900px;
-            }
-            
-            .herd-visualization {
-                max-width: 900px;
-                height: 280px;
-            }
-            
-            .progress-bar {
-                max-width: 900px;
-            }
-        }
-        
-        /* Content wrapper for better organization */
-        .content-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            gap: 20px;
-        }
-        
-        /* Subtle background pattern for visual interest */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(168, 208, 230, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(199, 179, 229, 0.1) 0%, transparent 20%);
-            pointer-events: none;
-            z-index: -1;
         }
     </style>
 </head>
@@ -438,52 +328,48 @@
     <!-- Introduction Screen -->
     <div id="screen-1" class="screen active">
         <div class="container">
-            <div class="content-wrapper">
-                <div class="emoji">👥</div>
-                <h1>Why We Follow Crowds</h1>
-                <p>An interactive exploration of herding behavior and information cascades</p>
-                <div class="fact-box fact-stay">
-                    <p>💡 <strong>Unknown Fact:</strong> 90% of people follow crowds even when they know the crowd is wrong in controlled experiments.</p>
-                </div>
-                <button class="btn" onclick="showScreen(2)">Start Experience</button>
+            <div class="emoji">👥</div>
+            <h1>Why We Follow Crowds</h1>
+            <p>Quick game • See your herding behavior</p>
+            <div class="fact-box fact-stay">
+                <p>💡 <strong>Unknown Fact:</strong> 90% of people follow crowds even when they know the crowd is wrong in controlled experiments.</p>
             </div>
+            <button class="btn" onclick="showScreen(2)">Start Game</button>
         </div>
     </div>
 
     <!-- Scenario 1: Restaurant Choice -->
     <div id="screen-2" class="screen">
         <div class="container">
-            <div class="content-wrapper">
-                <h2>The Restaurant Dilemma</h2>
-                <p>You're looking for a place to eat dinner. Which restaurant would you choose?</p>
-                
-                <div class="restaurant-visual">
-                    <div class="restaurant">
-                        <h3>Quiet Bistro</h3>
-                        <div class="customers">0</div>
-                        <p>Completely empty</p>
-                    </div>
-                    <div class="restaurant">
-                        <h3>Popular Spot</h3>
-                        <div class="customers">15</div>
-                        <p>Bustling with people</p>
-                    </div>
+            <h2>Restaurant Choice</h2>
+            <p>You're hungry. Which restaurant do you pick?</p>
+            
+            <div class="restaurant-visual">
+                <div class="restaurant">
+                    <h3>Empty Place</h3>
+                    <div class="customers">0</div>
+                    <p>No customers</p>
                 </div>
-                
-                <div class="instruction">
-                    ⚠️ Select your choice below (decision cannot be changed)
+                <div class="restaurant">
+                    <h3>Busy Spot</h3>
+                    <div class="customers">12</div>
+                    <p>Full of people</p>
                 </div>
-                
-                <div class="options">
-                    <button class="option-btn" onclick="recordChoice(1, 'empty', this)">Choose Quiet Bistro</button>
-                    <button class="option-btn" onclick="recordChoice(1, 'busy', this)">Choose Popular Spot</button>
-                </div>
-                
-                <div class="result" id="result-1">
-                    <div id="response-1" class="choice-response"></div>
-                    <p>This demonstrates <span class="highlight">Herding Behavior</span> - following others without personal information.</p>
-                    <button class="btn continue-btn" onclick="showScreen(3)">Continue</button>
-                </div>
+            </div>
+            
+            <div class="instruction">
+                ⚠️ Please select one option below (you can't change it)
+            </div>
+            
+            <div class="options">
+                <button class="option-btn" onclick="recordChoice(1, 'empty', this)">Empty Place</button>
+                <button class="option-btn" onclick="recordChoice(1, 'busy', this)">Busy Spot</button>
+            </div>
+            
+            <div class="result" id="result-1">
+                <div id="response-1" class="choice-response"></div>
+                <p>This is called <span class="highlight">Herding Behavior</span> - following others without much information.</p>
+                <button class="btn continue-btn" onclick="showScreen(3)">Continue</button>
             </div>
         </div>
     </div>
@@ -491,40 +377,38 @@
     <!-- Scenario 2: Information Cascade -->
     <div id="screen-3" class="screen">
         <div class="container">
-            <div class="content-wrapper">
-                <h2>The Inside Information</h2>
-                <p>Your food critic friend messages you: "Quiet Bistro has the best chef in town!"</p>
-                <p>But you see 12 people waiting in line at Popular Spot</p>
-                
-                <div class="visual-explanation">
-                    <div class="icon-box">
-                        <div class="emoji">👨‍🍳⭐</div>
-                        <p>Expert recommendation</p>
-                    </div>
-                    <div class="arrow">← VS →</div>
-                    <div class="icon-box">
-                        <div class="emoji">👥👥👥</div>
-                        <p>Crowd preference</p>
-                    </div>
+            <h2>The Secret Tip</h2>
+            <p>Your food critic friend texts you: "Empty Place has amazing food!"</p>
+            <p>But you see 10 people lining up at Busy Spot</p>
+            
+            <div class="visual-explanation">
+                <div class="icon-box">
+                    <div class="emoji">👨‍🍳</div>
+                    <p>Trusted food tip</p>
                 </div>
-                
-                <div class="instruction">
-                    ⚠️ Make your decision (choice will be locked in)
+                <div class="arrow">← VS →</div>
+                <div class="icon-box">
+                    <div class="emoji">👥👥👥</div>
+                    <p>10 people in line</p>
                 </div>
-                
-                <div class="options">
-                    <button class="option-btn" onclick="recordChoice(2, 'trust-tip', this)">Trust the expert tip</button>
-                    <button class="option-btn" onclick="recordChoice(2, 'follow-crowd', this)">Follow the crowd</button>
+            </div>
+            
+            <div class="instruction">
+                ⚠️ Make your choice (this will be locked in)
+            </div>
+            
+            <div class="options">
+                <button class="option-btn" onclick="recordChoice(2, 'trust-tip', this)">Trust your tip</button>
+                <button class="option-btn" onclick="recordChoice(2, 'follow-crowd', this)">Follow the crowd</button>
+            </div>
+            
+            <div class="result" id="result-2">
+                <div id="response-2" class="choice-response"></div>
+                <p>Following the crowd despite having better information creates an <span class="highlight">Information Cascade</span>!</p>
+                <div class="fact-box fact-stay">
+                    <p>💡 <strong>Real Case:</strong> In 1997, a rumor about a restaurant in Beijing caused 40,000 people to line up, even though the restaurant didn't actually exist!</p>
                 </div>
-                
-                <div class="result" id="result-2">
-                    <div id="response-2" class="choice-response"></div>
-                    <p>Following the crowd despite having better information creates an <span class="highlight">Information Cascade</span>!</p>
-                    <div class="fact-box fact-stay">
-                        <p>💡 <strong>Real Case:</strong> In 1997, a rumor about a restaurant in Beijing caused 40,000 people to line up, even though the restaurant didn't actually exist!</p>
-                    </div>
-                    <button class="btn continue-btn" onclick="showScreen(4)">Continue</button>
-                </div>
+                <button class="btn continue-btn" onclick="showScreen(4)">Continue</button>
             </div>
         </div>
     </div>
@@ -532,32 +416,30 @@
     <!-- Scenario 3: Stock Market -->
     <div id="screen-4" class="screen">
         <div class="container">
-            <div class="content-wrapper">
-                <h2>Stock Market Mania</h2>
-                <p>A tech company's stock is skyrocketing. Everyone is investing.</p>
-                <p>Your financial analysis shows the company isn't profitable.</p>
-                
-                <div class="herd-visualization" id="stock-herd">
-                    <!-- People will be added here by JavaScript -->
+            <h2>Stock Market Frenzy</h2>
+            <p>A tech stock is rising rapidly. Everyone is buying it.</p>
+            <p>Your research shows the company isn't profitable.</p>
+            
+            <div class="herd-visualization" id="stock-herd">
+                <!-- People will be added here by JavaScript -->
+            </div>
+            
+            <div class="instruction">
+                ⚠️ Choose your action (selection is final)
+            </div>
+            
+            <div class="options">
+                <button class="option-btn" onclick="recordChoice(3, 'buy', this)">Buy the stock</button>
+                <button class="option-btn" onclick="recordChoice(3, 'avoid', this)">Avoid it</button>
+            </div>
+            
+            <div class="result" id="result-3">
+                <div id="response-3" class="choice-response"></div>
+                <p>Following the herd in finance creates <span class="highlight">bubbles</span> that eventually burst!</p>
+                <div class="fact-box fact-stay">
+                    <p>💡 <strong>Historical Case:</strong> During the 17th century Tulip Mania, people traded houses for single tulip bulbs because everyone was doing it! The bubble eventually burst, bankrupting many.</p>
                 </div>
-                
-                <div class="instruction">
-                    ⚠️ Choose your investment strategy (selection is final)
-                </div>
-                
-                <div class="options">
-                    <button class="option-btn" onclick="recordChoice(3, 'buy', this)">Invest in the stock</button>
-                    <button class="option-btn" onclick="recordChoice(3, 'avoid', this)">Avoid the investment</button>
-                </div>
-                
-                <div class="result" id="result-3">
-                    <div id="response-3" class="choice-response"></div>
-                    <p>Following the herd in finance creates <span class="highlight">market bubbles</span> that eventually burst!</p>
-                    <div class="fact-box fact-stay">
-                        <p>💡 <strong>Historical Case:</strong> During the 17th century Tulip Mania, people traded houses for single tulip bulbs because everyone was doing it! The bubble eventually burst, bankrupting many.</p>
-                    </div>
-                    <button class="btn continue-btn" onclick="showScreen(5)">Continue</button>
-                </div>
+                <button class="btn continue-btn" onclick="showScreen(5)">Continue</button>
             </div>
         </div>
     </div>
@@ -565,40 +447,38 @@
     <!-- Scenario 4: Social Media -->
     <div id="screen-5" class="screen">
         <div class="container">
-            <div class="content-wrapper">
-                <h2>Digital Herd Mentality</h2>
-                <p>A new social media platform is trending. All your friends are joining.</p>
-                <p>You discover it has significant privacy concerns.</p>
-                
-                <div class="visual-explanation">
-                    <div class="icon-box">
-                        <div class="emoji">🔒⚠️</div>
-                        <p>Privacy risks identified</p>
-                    </div>
-                    <div class="arrow">← VS →</div>
-                    <div class="icon-box">
-                        <div class="emoji">📱🌟</div>
-                        <p>Social pressure to join</p>
-                    </div>
+            <h2>Social Media Trend</h2>
+            <p>A new social media app is trending. All your friends are joining.</p>
+            <p>You read it has privacy issues, but everyone seems to love it.</p>
+            
+            <div class="visual-explanation">
+                <div class="icon-box">
+                    <div class="emoji">🔒</div>
+                    <p>Privacy concerns</p>
                 </div>
-                
-                <div class="instruction">
-                    ⚠️ Select your decision (cannot be changed)
+                <div class="arrow">← VS →</div>
+                <div class="icon-box">
+                    <div class="emoji">📱✨</div>
+                    <p>All friends are on it</p>
                 </div>
-                
-                <div class="options">
-                    <button class="option-btn" onclick="recordChoice(4, 'avoid-app', this)">Avoid the platform</button>
-                    <button class="option-btn" onclick="recordChoice(4, 'join-app', this)">Join the platform</button>
+            </div>
+            
+            <div class="instruction">
+                ⚠️ Select your decision (cannot be changed)
+            </div>
+            
+            <div class="options">
+                <button class="option-btn" onclick="recordChoice(4, 'avoid-app', this)">Avoid the app</button>
+                <button class="option-btn" onclick="recordChoice(4, 'join-app', this)">Join the app</button>
+            </div>
+            
+            <div class="result" id="result-4">
+                <div id="response-4" class="choice-response"></div>
+                <p>This shows how herding affects our technology choices!</p>
+                <div class="fact-box fact-stay">
+                    <p>💡 <strong>Digital Herding:</strong> In 2013, a false tweet about an explosion at the White House caused the stock market to drop $136 billion in minutes, showing how digital herding can have real-world consequences!</p>
                 </div>
-                
-                <div class="result" id="result-4">
-                    <div id="response-4" class="choice-response"></div>
-                    <p>This shows how herding affects our digital lifestyle choices!</p>
-                    <div class="fact-box fact-stay">
-                        <p>💡 <strong>Digital Herding:</strong> In 2013, a false tweet about an explosion at the White House caused the stock market to drop $136 billion in minutes, showing how digital herding can have real-world consequences!</p>
-                    </div>
-                    <button class="btn continue-btn" onclick="showScreen(6)">See Your Results</button>
-                </div>
+                <button class="btn continue-btn" onclick="showScreen(6)">See Results</button>
             </div>
         </div>
     </div>
@@ -606,37 +486,35 @@
     <!-- Results Screen -->
     <div id="screen-6" class="screen">
         <div class="container">
-            <div class="content-wrapper">
-                <h2>Your Herding Behavior Profile</h2>
-                
-                <div class="game-stats">
-                    <div class="stat">
-                        <h3>Followed The Herd</h3>
-                        <p id="herd-count">0</p>
-                    </div>
-                    <div class="stat">
-                        <h3>Independent Choices</h3>
-                        <p id="independent-count">0</p>
-                    </div>
+            <h2>Your Herding Profile</h2>
+            
+            <div class="game-stats">
+                <div class="stat">
+                    <h3>Followed Herd</h3>
+                    <p id="herd-count">0</p>
                 </div>
-                
-                <div class="conclusion">
-                    <p id="conclusion-message">You're balanced!</p>
+                <div class="stat">
+                    <h3>Independent Choices</h3>
+                    <p id="independent-count">0</p>
                 </div>
-                
-                <div class="scenario">
-                    <h3>Key Concepts You've Explored</h3>
-                    <p><strong>Herding Behavior:</strong> Following others without personal information</p>
-                    <p><strong>Information Cascade:</strong> Following others despite having better information</p>
-                    <p>These behaviors are natural but understanding them helps make better decisions!</p>
-                </div>
-                
-                <div class="fact-box fact-stay">
-                    <p>💡 <strong>Evolutionary Insight:</strong> Herding isn't always bad! It helped our ancestors survive by sticking together against predators. Today, it helps us navigate complex social environments, but awareness helps avoid poor decisions.</p>
-                </div>
-                
-                <button class="btn" onclick="restartGame()">Play Again</button>
             </div>
+            
+            <div class="conclusion">
+                <p id="conclusion-message">You're balanced!</p>
+            </div>
+            
+            <div class="scenario">
+                <h3>What You Learned</h3>
+                <p><strong>Herding Behavior:</strong> Following others without much information</p>
+                <p><strong>Information Cascade:</strong> Following others despite having better information</p>
+                <p>Both happen because we're social creatures who often trust the crowd!</p>
+            </div>
+            
+            <div class="fact-box fact-stay">
+                <p>💡 <strong>Evolutionary Insight:</strong> Herding isn't always bad! It helped our ancestors survive by sticking together against predators. Today, it helps us navigate complex social environments.</p>
+            </div>
+            
+            <button class="btn" onclick="restartGame()">Play Again</button>
         </div>
     </div>
 
@@ -646,6 +524,9 @@
             herd: 0,
             independent: 0
         };
+        
+        // Track current scenario
+        let currentScenario = 1;
         
         // Show specific screen
         function showScreen(screenNumber) {
@@ -696,20 +577,20 @@
             // Define responses for each choice
             const responses = {
                 1: {
-                    'empty': "You chose the quiet restaurant. That's an independent choice! Most people (85%) would pick the busy one, assuming it must be better.",
-                    'busy': "You followed the crowd to the popular restaurant. That's herding behavior! 85% of people make this choice, often assuming busy means better."
+                    'empty': "You chose the empty restaurant. That's an independent choice! Most people (85%) would pick the busy one, assuming it must be better.",
+                    'busy': "You followed the crowd to the busy restaurant. That's herding behavior! 85% of people make this choice, often assuming busy means better."
                 },
                 2: {
-                    'trust-tip': "You trusted your expert information over the crowd. That's resisting an information cascade! Only 30% of people do this when faced with a conflicting crowd.",
+                    'trust-tip': "You trusted your private information over the crowd. That's resisting an information cascade! Only 30% of people do this when faced with a conflicting crowd.",
                     'follow-crowd': "You followed the crowd despite having better information. This creates an information cascade! 70% of people do this, often doubting their own information."
                 },
                 3: {
-                    'buy': "You invested in the trending stock, following the herd. This is how financial bubbles form! During bubbles, 80% of investors follow the crowd despite warning signs.",
+                    'buy': "You bought the trending stock, following the herd. This is how financial bubbles form! During bubbles, 80% of investors follow the crowd despite warning signs.",
                     'avoid': "You avoided the stock based on your research. That's independent thinking! Only 20% resist during market manias, often saving themselves from crashes."
                 },
                 4: {
-                    'avoid-app': "You avoided the platform despite social pressure. That's digital independence! Only 25% resist joining trending apps with known issues.",
-                    'join-app': "You joined the platform to stay with your friends. That's digital herding! 75% join apps mainly because their friends are there, often overlooking concerns."
+                    'avoid-app': "You avoided the app despite social pressure. That's digital independence! Only 25% resist joining trending apps with known issues.",
+                    'join-app': "You joined the app to stay with your friends. That's digital herding! 75% join apps mainly because their friends are there, often overlooking concerns."
                 }
             };
             
@@ -738,12 +619,12 @@
             herdContainer.innerHTML = '';
             
             // Create people in the herd
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 12; i++) {
                 const person = document.createElement('div');
                 person.className = 'person';
                 person.textContent = '↑';
-                person.style.left = `${30 + (i % 5) * 80}px`;
-                person.style.top = `${40 + Math.floor(i / 5) * 60}px`;
+                person.style.left = `${20 + (i % 4) * 70}px`;
+                person.style.top = `${30 + Math.floor(i / 4) * 45}px`;
                 herdContainer.appendChild(person);
             }
             
@@ -751,8 +632,8 @@
             const you = document.createElement('div');
             you.className = 'person you';
             you.textContent = 'YOU';
-            you.style.left = '350px';
-            you.style.top = '150px';
+            you.style.left = '280px';
+            you.style.top = '120px';
             herdContainer.appendChild(you);
         }
         
